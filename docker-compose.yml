@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  web:
+    image: node_hl
+    restart: always
+    build: .
+    ports:
+      - "4000:4000"
+    environment:
+      DB_HOST: host.docker.internal,
+    links:
+      - db
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
