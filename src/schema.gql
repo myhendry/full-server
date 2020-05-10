@@ -3,34 +3,72 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Book {
+  id: ID!
+  title: String!
+  likes: [ID!]!
+  created: DateTime!
+  updated: DateTime!
+  users: [User!]
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
 scalar DateTime
 
+"""Gender"""
+enum Gender {
+  MALE
+  FEMALE
+}
+
 type Mutation {
+  createProfile(photo: String!, gender: Gender!): Profile
+  authFacebook(facebookAccessToken: String!): String
   login(password: String!, email: String!): String
   register(password: String!, email: String!): Boolean!
+  likeBook(bookId: String!): Boolean!
+  addBook(authorIds: [ID!]!, title: String!): Book
   addTodo(name: String!): Todo
+}
+
+type Profile {
+  id: ID!
+  gender: Gender
+  photo: String!
+  user: User!
 }
 
 type Query {
   users: [User!]!
+  getUserProfile: User
+  books: [Book!]!
+  testQueryBuilder: Boolean!
   todos: [Todo!]!
+}
+
+type Subscription {
+  addedTodo: Todo!
 }
 
 type Todo {
   id: ID!
   name: String!
   userId: String!
+  created: DateTime!
+  updated: DateTime!
   user: User!
 }
 
 type User {
   id: ID!
   name: String
+  facebookId: String
   email: String!
   created: DateTime!
   updated: DateTime!
+  profile: Profile
   todos: [Todo!]!
+  books: [Book!]
 }

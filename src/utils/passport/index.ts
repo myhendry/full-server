@@ -77,4 +77,4 @@ const authenticateGoogle = (req: Request, res: Response) =>
     )(req, res);
   });
 
-module.exports = { authenticateFacebook, authenticateGoogle };
+export { authenticateFacebook, authenticateGoogle };

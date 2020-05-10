@@ -5,6 +5,8 @@ import {
   BaseEntity,
   ManyToOne,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from "typeorm";
 import { Field, ID, ObjectType } from "type-graphql";
 import { User } from "./User";
@@ -23,6 +25,14 @@ export class Todo extends BaseEntity {
   @Field()
   @Column("text")
   userId: string;
+
+  @Field(() => Date)
+  @CreateDateColumn()
+  created: Date;
+
+  @Field(() => Date)
+  @UpdateDateColumn()
+  updated: Date;
 
   @Field(() => User)
   @ManyToOne(() => User, (user) => user.todos)

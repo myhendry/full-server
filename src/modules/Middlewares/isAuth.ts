@@ -14,6 +14,7 @@ export const isAuth: MiddlewareFn<ContextType> = async ({ context }, next) => {
   const [, token] = authorization.split(" ");
 
   const { error, decoded }: any = await isTokenValid(token);
+  console.log("decoded ", decoded);
 
   if (error) {
     throw new AuthenticationError("Invalid Token! Access Denied");

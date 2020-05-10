@@ -18,7 +18,8 @@ import {
 
 import { ENV } from "./settings/envVariables";
 import "../ormconfig";
-import { UserResolver } from "./modules/User/index";
+import { UserResolver } from "./modules/User";
+import { BookResolver } from "./modules/Book";
 import { TodoResolver } from "./modules/Todo";
 
 (async () => {
@@ -52,9 +53,11 @@ import { TodoResolver } from "./modules/Todo";
 
   //* Apollo Server Setup
   const apolloServer = new ApolloServer({
+    playground: true,
+    introspection: true,
     validationRules: [depthLimit(7)],
     schema: await buildSchema({
-      resolvers: [TodoResolver, UserResolver],
+      resolvers: [TodoResolver, BookResolver, UserResolver],
       dateScalarMode: "isoDate",
       emitSchemaFile: path.resolve(__dirname, "schema.gql"),
     }),

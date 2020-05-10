@@ -3,5 +3,5 @@ import { Request, Response } from "express";
 export interface ContextType {
   req: Request;
   res: Response;
-  payload?: { id: string; email: string; iat: number };
+  payload?: { userId: string; email: string; iat: number };
 }
