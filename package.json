@@ -35,7 +35,7 @@
     "reflect-metadata": "^0.1.10",
     "ts-node-dev": "^1.0.0-pre.44",
     "type-graphql": "^0.17.6",
-    "typeorm": "0.2.24"
+    "typeorm": "0.2.25"
   },
   "scripts": {
     "build": "tsc -b",
